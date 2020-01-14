@@ -1,0 +1,20 @@
+{
+"q1":{
+	"question":"What is the capitol of California?",
+	"a":"Sacramento",
+	"b":"San Jose",
+	"c":"San Juan",
+	"answer":"a"},
+"q2":{
+	"question":"What is the capitol of United States?",
+	"a":"Virginia",
+	"b":"Washington DC",
+	"c":"Philedelphia",
+	"answer":"b"},
+"q3":{		
+	"question":"What is the capitol of South Korea?",
+	"a":"Tokyo",
+	"b":"Busan",
+	"c":"Seoul",
+	"answer":"c"}
+}	
