@@ -1,0 +1,57 @@
+{
+    "q1":{
+        "question":"니무",
+        "a":"ladder",
+        "b":"tree",
+        "c":"radish",
+        "answer":"b"},
+    "q2":{
+        "question":"자동차",
+        "a":"automobile",
+        "b":"motorcycle",
+        "c":"bicycle",
+        "answer":"a"},
+    "q3":{		
+        "question":"놀이터",
+        "a":"picnic",
+        "b":"playground",
+        "c":"school",
+        "answer":"b"},
+    "q4":{		
+        "question":"손",
+        "a":"finger",
+        "b":"feet",
+        "c":"hand",
+        "answer":"c"},
+    "q5":{		
+        "question":"책",
+        "a":"book",
+        "b":"magazine",
+        "c":"paper",
+        "answer":"a"},
+    "q6":{		
+        "question":"그림",
+        "a":"drawing",
+        "b":"photograph",
+        "c":"television",
+        "answer":"a"}
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    }	
