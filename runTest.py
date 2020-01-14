@@ -3,9 +3,7 @@ import json
 import time
 import argparse
 import pygame 
-# for sound effects
-# https://www.zapsplat.com/sound-effect-category/fart/
-# https://www.pacdv.com/sounds/people_sounds.html
+from random import randint
 
 class Test(object):
 
@@ -16,16 +14,40 @@ class Test(object):
 		with open(testfile,"r") as f:
 			self.test = json.load(f)
 
+		self.setupSound()
+
+
+	def setupSound(self):
 		pygame.mixer.init()
-		self.burp = pygame.mixer.Sound(os.path.join('sound','burp.wav'))
-		self.yougotit = pygame.mixer.Sound(os.path.join('sound','you got it.wav'))
-		backgroundmusic = pygame.mixer.music.load(os.path.join('sound','upbeat.mp3'))
+
+		self.wrongPath = os.path.join('sound','wrong')
+		self.rightPath = os.path.join('sound','right')
+		self.musicPath = os.path.join('sound','music')
+
+		rightCount = 1
+		for soundFile in os.listdir(self.rightPath):
+			string = f"self.right{rightCount} = pygame.mixer.Sound(os.path.join(self.rightPath,'{soundFile}'))"
+			exec(string)
+			rightCount +=1
+
+		wrongCount = 1
+		for soundFile in os.listdir(self.wrongPath):
+			string = f"self.wrong{wrongCount} = pygame.mixer.Sound(os.path.join(self.wrongPath,'{soundFile}'))"
+			exec(string)
+			wrongCount +=1
+
+		backgroundmusic = pygame.mixer.music.load(os.path.join(self.musicPath,'upbeat.mp3'))
 		pygame.mixer.music.play(-1)
+
 
 
 	def takeTest(self):
 		score = 0
 		totalQuestion = 0
+
+		rightLimit = len(os.listdir(self.rightPath))
+		wrongLimit = len(os.listdir(self.wrongPath))
+
 
 		for k,v in self.test.items():
 			count = 1
@@ -35,16 +57,18 @@ class Test(object):
 			print(f" c. {v['c']}")
 			ans = input("Answer: ").lower()
 			if ans == v['answer']:
-				self.yougotit.play()
+				rightSound = f"self.right{randint(1,rightLimit)}.play()"
+				exec(rightSound)
+
 				print(f"\nCorrect! The answer is {ans}\n")
-				score +=1
-				totalQuestion +=1
-				count +=1
+				score +=1; totalQuestion +=1; count +=1
+
 			elif ans != v['answer']:
-				self.burp.play()
+				wrongSound = f"self.wrong{randint(1,wrongLimit)}.play()"
+				exec(wrongSound)
+
 				print("\nWrong!\n")
-				totalQuestion +=1
-				count +=1
+				totalQuestion +=1; count +=1
 
 		if score == totalQuestion:
 			print("!!! PERFECT SCORE !!!")
@@ -53,8 +77,7 @@ class Test(object):
 
 
 def setArgParseAttributes():
-    parser = argparse.ArgumentParser(
-        description="operates tests")
+    parser = argparse.ArgumentParser(description="operates tests")
     parser.add_argument('-ci','--civicTest',action='store_true',help="will execute Civic test")
     parser.add_argument('-ko','--koreanTest',action='store_true',help="will execute Korean test")
     args = parser.parse_args()
