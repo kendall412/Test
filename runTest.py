@@ -8,8 +8,9 @@ from random import randint
 
 class Test(object):
 
-	def __init__(self,testType):
+	def __init__(self,testType,bgMusic):
 
+		self.bgMusic = bgMusic
 		self.testType = testType
 		testfile = f"{self.testType}.json"
 
@@ -38,9 +39,11 @@ class Test(object):
 			exec(string)
 			wrongCount +=1
 
-		backgroundmusic = pygame.mixer.music.load(os.path.join(self.musicPath,'upbeat.mp3'))
-		pygame.mixer.music.play(-1)
-
+		if self.bgMusic:
+			backgroundmusic = pygame.mixer.music.load(os.path.join(self.musicPath,'upbeat.mp3'))
+			pygame.mixer.music.play(-1)
+		else:
+			pass
 
 
 	# def takeTest(self):
@@ -87,14 +90,13 @@ class Test(object):
 		rightLimit = len(os.listdir(self.rightPath))
 		wrongLimit = len(os.listdir(self.wrongPath))
 		testLimit = len(self.test)
-
 		tests = list(range(1,testLimit+1))
 		random.shuffle(tests)
 
 		for i in tests:
 			testElement = f"q{i}"
 
-			print(f"{questionCount}.{self.test[testElement]['question']}")
+			print(f"\n\n{questionCount}.{self.test[testElement]['question']}")
 			print(f" a.{self.test[testElement]['a']}")
 			print(f" b.{self.test[testElement]['b']}")
 			print(f" c.{self.test[testElement]['c']}")
@@ -105,7 +107,7 @@ class Test(object):
 				rightSound = f"self.right{randint(1,rightLimit)}.play()"
 				exec(rightSound)
 
-				print(f"\nCorrect! The answer is {ans}\n")
+				print(f"\nCorrect!\n")
 				score +=1; totalQuestion +=1; questionCount +=1			
 
 			elif ans != self.test[testElement]['answer']:
@@ -117,12 +119,13 @@ class Test(object):
 
 		if score == totalQuestion:
 			print("!!! PERFECT SCORE !!!")
-		print(f"Total Score: {score} out of {totalQuestion}\n")
+		print(f"Total Score: {score} out of {totalQuestion} ({(score/totalQuestion)*100:.2f})\n")
 		time.sleep(2)
 
 
 def setArgParseAttributes():
     parser = argparse.ArgumentParser(description="operates tests")
+    parser.add_argument('-mu','--music',action='store_true',help="will turn on background music")
     parser.add_argument('-ci','--civicTest',action='store_true',help="will execute Civic test")
     parser.add_argument('-ko','--koreanTest',action='store_true',help="will execute Korean test")
     args = parser.parse_args()
@@ -135,5 +138,9 @@ if __name__ == "__main__":
 	if args.civicTest: testType="civic"
 	elif args.koreanTest: testType="korean"
 
-	x = Test(testType=testType)
+	if args.music:
+		x = Test(testType=testType,bgMusic=True)
+	else:
+		x = Test(testType=testType,bgMusic=False)
+
 	x.takeTest()
