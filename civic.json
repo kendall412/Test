@@ -1,20 +1,82 @@
 {
+
 "q1":{
-	"question":"What is the capitol of California?",
-	"a":"Sacramento",
-	"b":"San Jose",
-	"c":"San Juan",
-	"answer":"a"},
-"q2":{
 	"question":"What is the capitol of United States?",
 	"a":"Virginia",
 	"b":"Washington DC",
 	"c":"Philedelphia",
 	"answer":"b"},
+"q2":{
+	"question":"What is the capitol of China?",
+	"a":"Beijing",
+	"b":"Shanghai",
+	"c":"Guangzhou ",
+	"answer":"a"},
 "q3":{		
 	"question":"What is the capitol of South Korea?",
-	"a":"Tokyo",
+	"a":"Incheon",
 	"b":"Busan",
 	"c":"Seoul",
-	"answer":"c"}
+	"answer":"c"},
+"q4":{		
+	"question":"What is the capitol of Canada?",
+	"a":"Montreal",
+	"b":"Ottawa",
+	"c":"Quebec ",
+	"answer":"b"},
+"q5":{		
+	"question":"What is the capitol of Australia?",
+	"a":"Sydney",
+	"b":"Melbourne",
+	"c":"Canberra",
+	"answer":"c"},
+"q6":{		
+	"question":"What is the capitol of Austria?",
+	"a":"Innsbruck",
+	"b":"Vienna",
+	"c":"Salzburg",
+	"answer":"b"},
+"q7":{		
+	"question":"What is the capitol of Belarus?",
+	"a":"Minsk",
+	"b":"Grodno",
+	"c":"Brest",
+	"answer":"a"},
+"q8":{		
+	"question":"What is the capitol of Belgium?",
+	"a":"Antwerp",
+	"b":"Brussels",
+	"c":"Charleroi",
+	"answer":"b"},
+"q9":{		
+	"question":"What is the capitol of Cambodia?",
+	"a":"Phnom Penh",
+	"b":"Battambang",
+	"c":"Kâmpóng Cham",
+	"answer":"a"},
+"q10":{		
+	"question":"What is the capitol of Chile?",
+	"a":"Santiago",
+	"b":"Puente Alto",
+	"c":"San Bernardo",
+	"answer":"a"},
+"q11":{		
+	"question":"What is the capitol of Denmark?",
+	"a":"Århus",
+	"b":"Copenhagen",
+	"c":"Frederiksberg",
+	"answer":"b"}
+
+
+
+
+
+
+
+
+
+
+
+
+
 }	

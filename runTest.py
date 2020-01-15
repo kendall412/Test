@@ -3,11 +3,13 @@ import json
 import time
 import argparse
 import pygame 
+import random
 from random import randint
 
 class Test(object):
 
 	def __init__(self,testType):
+
 		self.testType = testType
 		testfile = f"{self.testType}.json"
 
@@ -41,34 +43,77 @@ class Test(object):
 
 
 
+	# def takeTest(self):
+	# 	score = 0
+	# 	totalQuestion = 0
+	# 	questionCount = 1
+
+	# 	rightLimit = len(os.listdir(self.rightPath))
+	# 	wrongLimit = len(os.listdir(self.wrongPath))
+
+
+	# 	for k,v in self.test.items():
+			
+	# 		print(f"\n\n{questionCount}. {v['question']}")
+	# 		print(f" a. {v['a']}")
+	# 		print(f" b. {v['b']}")
+	# 		print(f" c. {v['c']}")
+	# 		ans = input("Answer: ").lower()
+	# 		if ans == v['answer']:
+	# 			rightSound = f"self.right{randint(1,rightLimit)}.play()"
+	# 			exec(rightSound)
+
+	# 			print(f"\nCorrect! The answer is {ans}\n")
+	# 			score +=1; totalQuestion +=1; questionCount +=1
+
+	# 		elif ans != v['answer']:
+	# 			wrongSound = f"self.wrong{randint(1,wrongLimit)}.play()"
+	# 			exec(wrongSound)
+
+	# 			print("\nWrong!\n")
+	# 			totalQuestion +=1; questionCount +=1
+
+	# 	if score == totalQuestion:
+	# 		print("!!! PERFECT SCORE !!!")
+	# 	print(f"Total Score: {score} out of {totalQuestion}\n")
+	# 	time.sleep(2)
+
+
 	def takeTest(self):
 		score = 0
 		totalQuestion = 0
+		questionCount = 1
 
 		rightLimit = len(os.listdir(self.rightPath))
 		wrongLimit = len(os.listdir(self.wrongPath))
+		testLimit = len(self.test)
 
+		tests = list(range(1,testLimit+1))
+		random.shuffle(tests)
 
-		for k,v in self.test.items():
-			count = 1
-			print(f"\n\n{count}. {v['question']}")
-			print(f" a. {v['a']}")
-			print(f" b. {v['b']}")
-			print(f" c. {v['c']}")
+		for i in tests:
+			testElement = f"q{i}"
+
+			print(f"{questionCount}.{self.test[testElement]['question']}")
+			print(f" a.{self.test[testElement]['a']}")
+			print(f" b.{self.test[testElement]['b']}")
+			print(f" c.{self.test[testElement]['c']}")
+			
 			ans = input("Answer: ").lower()
-			if ans == v['answer']:
+			
+			if ans == self.test[testElement]['answer']:
 				rightSound = f"self.right{randint(1,rightLimit)}.play()"
 				exec(rightSound)
 
 				print(f"\nCorrect! The answer is {ans}\n")
-				score +=1; totalQuestion +=1; count +=1
+				score +=1; totalQuestion +=1; questionCount +=1			
 
-			elif ans != v['answer']:
+			elif ans != self.test[testElement]['answer']:
 				wrongSound = f"self.wrong{randint(1,wrongLimit)}.play()"
 				exec(wrongSound)
 
 				print("\nWrong!\n")
-				totalQuestion +=1; count +=1
+				totalQuestion +=1; questionCount +=1
 
 		if score == totalQuestion:
 			print("!!! PERFECT SCORE !!!")
